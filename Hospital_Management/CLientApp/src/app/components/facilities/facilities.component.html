@@ -1,0 +1,43 @@
+<p>facilities works!</p>
+<mat-card class="card-container mat-elevation-z5">
+  <mat-card-header>
+    <mat-card-title>
+      Facility
+    </mat-card-title>
+    <a [routerLink]="['/facilities-create']" mat-mini-fab color="primary"><mat-icon id="plus">add</mat-icon></a>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <div class="table-container">
+      <mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="facilitiesId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.facilitiesId}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="admissionId">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Admission</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.addmisonId}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="facilityName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Facility</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.facilityName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="facilityPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Price</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.facilityPrice}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Action</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            <button mat-icon-button [routerLink]="['/facilities-edit',element.facilitiesId]"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="warn" (click)="confirmDelete(element)"><mat-icon>delete</mat-icon></button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnList"></mat-header-row>
+        <mat-row *matRowDef="let row;columns:columnList"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
